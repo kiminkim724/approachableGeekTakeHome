@@ -35,15 +35,18 @@ const DetailRow: React.FC<Props> = ({title, type, detail, names}) => {
       }}>
       <View>
         <Text style={styles.title}>{title}</Text>
-        {type === Details.Name ? (
-          <Text style={styles.detail}>
-            {names?.firstName} {names?.lastName}
-          </Text>
-        ) : (
-          <Text style={styles.detail} numberOfLines={3}>
-            {detail}
-          </Text>
-        )}
+        {
+          // Load multiline for bio, single line otherwise
+          type === Details.Name ? (
+            <Text style={styles.detail}>
+              {names?.firstName} {names?.lastName}
+            </Text>
+          ) : (
+            <Text style={styles.detail} numberOfLines={3}>
+              {detail}
+            </Text>
+          )
+        }
       </View>
       <Icon style={styles.button} name="arrow-forward-ios" />
     </Pressable>

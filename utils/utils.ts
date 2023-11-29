@@ -15,7 +15,7 @@ export interface Profile {
   picture: string;
 }
 
-export const getLabel = (type: Details) => {
+export const getLabel = (type: Details): string => {
   switch (type) {
     case Details.Email:
       return 'Your email address';
@@ -28,7 +28,7 @@ export const getLabel = (type: Details) => {
   }
 };
 
-export const getTitle = (type: Details) => {
+export const getTitle = (type: Details): string => {
   switch (type) {
     case Details.Name:
       return "What's your name?";
@@ -45,7 +45,7 @@ export const getTitle = (type: Details) => {
   }
 };
 
-export const getPlaceholder = (type: Details) => {
+export const getPlaceholder = (type: Details): string => {
   switch (type) {
     case Details.Email:
       return 'Timcook@icloud.com';
@@ -58,7 +58,7 @@ export const getPlaceholder = (type: Details) => {
   }
 };
 
-export const formatPhoneNumber = (number: string) => {
+export const formatPhoneNumber = (number: string): string => {
   const numericInput = number.replace(/\D/g, '');
 
   let formattedNumber = '';
@@ -76,4 +76,26 @@ export const formatPhoneNumber = (number: string) => {
   }
 
   return formattedNumber;
+};
+
+export const checkFormat = (data: string, type: Details): boolean => {
+  let reg;
+  let error = 'Undefined';
+  switch (type) {
+    case Details.Email:
+      reg = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+      error = 'Email';
+      break;
+    case Details.Phone:
+      reg = /^\(\d{3}\) \d{3}-\d{4}$/;
+      error = 'Phone';
+      break;
+    default:
+      return true;
+  }
+  if (reg?.test(data)) {
+    return true;
+  } else {
+    throw Error(`Invalid ${error} format`);
+  }
 };
