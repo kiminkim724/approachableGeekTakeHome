@@ -3,9 +3,9 @@ import {Text, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import styles from './styles';
-import {Details} from '../../utils/utils';
+import {Details} from '../../../utils/utils';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../App';
+import {RootStackParamList} from '../../../App';
 
 type Props = {
   data: string | {firstName: string; lastName: string};

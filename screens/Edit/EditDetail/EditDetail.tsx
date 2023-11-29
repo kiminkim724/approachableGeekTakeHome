@@ -3,7 +3,7 @@ import {Text, View, TextInput} from 'react-native';
 import styles from './styles';
 import {Details, formatPhoneNumber, getLabel} from '../../../utils/utils';
 import {getPlaceholder, getTitle} from '../../../utils/utils';
-import UpdateButton from '../../UpdateButton/UpdateButton';
+import UpdateButton from '../UpdateButton/UpdateButton';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../../App';
 
@@ -22,39 +22,42 @@ const EditDetail: React.FC<Props> = ({route}) => {
       <View style={styles.container}>
         <Text style={styles.title}>{getTitle(type)}</Text>
         <View style={styles.inputContainer}>
-          {type === Details.Bio ? (
-            <View style={styles.multiInputBox}>
-              <TextInput
-                style={styles.textInput}
-                value={data}
-                placeholder={getPlaceholder(type)}
-                placeholderTextColor="#ababab"
-                maxLength={200}
-                multiline={true}
-                textAlignVertical="top"
-                onChangeText={newData => {
-                  setData(newData);
-                }}
-              />
-            </View>
-          ) : (
-            <View style={styles.singleInputBox}>
-              <Text style={styles.inputLabel}>{getLabel(type)}</Text>
-              <TextInput
-                style={styles.textInput}
-                value={data}
-                placeholder={getPlaceholder(type)}
-                onChangeText={newData => {
-                  // Format phone number if phone number is being entered
-                  setData(
-                    type === Details.Phone
-                      ? formatPhoneNumber(newData)
-                      : newData,
-                  );
-                }}
-              />
-            </View>
-          )}
+          {
+            // Render different TextInput for Bio vs. Email/Phone
+            type === Details.Bio ? (
+              <View style={styles.multiInputBox}>
+                <TextInput
+                  style={styles.textInput}
+                  value={data}
+                  placeholder={getPlaceholder(type)}
+                  placeholderTextColor="#ababab"
+                  maxLength={200}
+                  multiline={true}
+                  textAlignVertical="top"
+                  onChangeText={newData => {
+                    setData(newData);
+                  }}
+                />
+              </View>
+            ) : (
+              <View style={styles.singleInputBox}>
+                <Text style={styles.inputLabel}>{getLabel(type)}</Text>
+                <TextInput
+                  style={styles.textInput}
+                  value={data}
+                  placeholder={getPlaceholder(type)}
+                  onChangeText={newData => {
+                    // Format phone number if phone number is being entered
+                    setData(
+                      type === Details.Phone
+                        ? formatPhoneNumber(newData)
+                        : newData,
+                    );
+                  }}
+                />
+              </View>
+            )
+          }
         </View>
         <View style={styles.updateButton}>
           <UpdateButton data={data ?? ''} type={type} />

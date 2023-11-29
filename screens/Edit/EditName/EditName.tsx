@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Text, TextInput, View} from 'react-native';
 import styles from './styles';
-import UpdateButton from '../../UpdateButton/UpdateButton';
+import UpdateButton from '../UpdateButton/UpdateButton';
 import {getTitle, Details} from '../../../utils/utils';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../../App';

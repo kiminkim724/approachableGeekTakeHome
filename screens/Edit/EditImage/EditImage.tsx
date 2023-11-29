@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
 import styles from './styles';
 import {Details, getTitle} from '../../../utils/utils';
-import UpdateButton from '../../UpdateButton/UpdateButton';
+import UpdateButton from '../UpdateButton/UpdateButton';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../../App';
 import {launchImageLibrary} from 'react-native-image-picker';
